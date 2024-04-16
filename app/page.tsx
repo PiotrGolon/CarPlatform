@@ -7,7 +7,19 @@ import { fuels, manufacturers, yearsOfProduction } from "@/constants";
 import ShowMore from "@/components/ShowMore";
 import ResetFilters from "@/components/ResetFilters";
 
-export default async function Home({ searchParams }) {
+interface SearchParamsProps {
+  manufacturer?: string;
+  year?: number;
+  fuel?: string;
+  limit?: number;
+  model?: string;
+}
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: SearchParamsProps;
+}) {
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
